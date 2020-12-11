@@ -1,0 +1,53 @@
+---
+title: "SymPy_Test_Alexandre"
+author: "Alexandre"
+date: "11/12/2020"
+output: html_document
+---
+
+
+install.packages("rSymPy")
+install.packages("rJython")
+install.packages("rJava")
+
+```{r}
+library(rJava)
+library(rJython)
+library(rSymPy)
+```
+
+Sys.setenv(JAVA_HOME='C:/Users/The Moneytizer/jdk-15.0.1') #indiquer chemin du dossier contenant JAVA
+
+```{r}
+x <- Var("x") #on introduit une variable x
+x+x #test d'une addition entre 2 variables x
+x*x #test d'une mulitiplication entre 2 variables x
+```
+
+```{r}
+sympy("var('x')") #on introduit une variable x
+sympy("y = x*x") #on introduit une variable y équivalente à x au carré
+sympy("y")
+```
+
+```{r}
+sympy("limit(1/x, x, oo)") #limite de 1/X quand x tend vers l'infini (noté; "oo")
+sympy("limit(1/x, x, 0)") #limite de 1/X quand x tend vers 0
+```
+
+```{r}
+sympy("diff(sin(2*x), x, 1)")
+sympy("diff(sin(2*x), x, 2)")
+```
+
+```{r}
+sympy("integrate(exp(-x), (x, 0, oo))")
+
+sympy("xr = Symbol('xr', real=True)")
+sympy("exp(I*xr).expand(complex=True)")
+```
+
+```{r}
+cat(sympy("A = Matrix([[1,x], [y,1]])"), "\n")
+cat(sympy("A**2"), "\n")
+```
